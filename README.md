@@ -11,6 +11,6 @@ As we know public transportation is one of the most important part of New York C
 
 
 ## More
-[DEMO](https://nyu-vis-fall2018.github.io/project-template/)
+[DEMO](https://nyu-vis-fall2018.github.io/storytelling-group-10-nyc-cab-data-visualization/)
 
-[Project Descrioption](https://docs.google.com/document/d/1C5ooLJyO5VhASEJXW7a-e-PTEs5RR_qeSDeppWKLwow/edit#heading=h.9j4rk1w4mxmt)
+[Project Description](https://docs.google.com/document/d/1C5ooLJyO5VhASEJXW7a-e-PTEs5RR_qeSDeppWKLwow/edit#heading=h.9j4rk1w4mxmt)
