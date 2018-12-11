@@ -1,0 +1,146 @@
+
+body {
+  background-color: #1B1B1E;
+  font-family: Roboto, sans-serif;
+}
+
+.container {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  min-height: 30vh;
+  margin: 0 auto;
+}
+.Question {
+  font-size: 40px;
+  margin: 0%;
+  font-size: 40px;
+  text-align: justify;
+}
+.list {
+  margin-top: 15%;
+  flex: 0 80%;
+}
+.list__item {
+  position: relative;
+}
+.list__item:hover label {
+  color: #BB4430;
+}
+.list__item:hover .label::before {
+  border: 7px solid #BB4430;
+  margin-right: 30px;
+}
+
+.radio-btn {
+  position: absolute;
+  visibility: hidden;
+}
+.radio-btn:checked ~ .label {
+  color: #BB4430;
+}
+.radio-btn:checked ~ .label::before {
+  margin-right: 30px;
+  border: 7px solid #BB4430;
+  background: #F8F7FF;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  padding: 25px 0 25px 20px;
+  color: #F8F7FF;
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s linear;
+}
+
+.label::before {
+  display: block;
+  content: '';
+  border: 7px solid #F8F7FF;
+  border-radius: 50%;
+  height: 18px;
+  width: 18px;
+  margin-right: 10px;
+  transition: all .25s linear;
+}
+.button {
+  display: block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.content {
+    white-space: normal;
+    color: white;
+    height: 25%;
+    width: 50%;
+    margin-left: 25%;
+    font-size: 20px;
+    margin-top: 5%;
+}
+.heading {
+    white-space: normal;
+    color: white;
+    height: auto;
+    width: 50%;
+    margin-left: 25%;
+    font-size: 40px;
+    margin-top: 8%;
+}
+ul {
+  white-space: normal;
+    color: white;
+    /* height: 25%; */
+    width: 50%;
+    margin-left: 25%;
+    font-size: 20px;
+    /* margin-top: 5%; */
+}
+
+.stats{
+  white-space: normal;
+    color: white;
+    /* height: 25%; */
+    width: 50%;
+    margin-left: 25%;
+    font-size: 20px;
+    /* margin-top: 5%; */
+}

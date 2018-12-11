@@ -4,7 +4,7 @@ $(document).ready(function(){
 	height = $('#graph3').height();
   data = readData();
   console.log(data)
-  //drawMap(width, height);
+  drawMap(width, height);
 	// drawGraph2(width, height);
   // addColorsToBoroughs()
 });

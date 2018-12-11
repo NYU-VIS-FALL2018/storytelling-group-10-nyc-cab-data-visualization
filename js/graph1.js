@@ -2,8 +2,8 @@
 
 function drawGraph(w,h){
 	var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = w - margin.left - margin.right,
-    height = h - margin.top - margin.bottom;
+    width = w - margin.left - margin.right - 30,
+    height = h - margin.top - margin.bottom - 20;
 
 // set the ranges
 var x = d3.scaleBand()
@@ -56,9 +56,17 @@ d3.csv("dataset/vis1_d3.csv", function(error, data) {
   svg.append("text")             
       .attr("transform",
             "translate(" + (width/2) + " ," + 
-                           (height + 22) + ")")
+                           (height + 30) + ")")
       .style("text-anchor", "middle")
       .text("Date");
+svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left - 1)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Value");   
+
 
 });
 }
