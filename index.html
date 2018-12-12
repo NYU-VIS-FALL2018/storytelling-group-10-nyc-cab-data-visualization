@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="js/index.js"></script>
 	<script src="//d3js.org/d3.v4.min.js"></script>
 
-	
+	<script type="text/javascript" src="js/heatmap.js"></script>
 	<script type="text/javascript" src="js/graph1.js"></script>
 	<script type="text/javascript" src="js/graph2.js"></script>
 	<script type="text/javascript" src="js/graph3.js"></script>
@@ -97,6 +97,12 @@ decision of whether to take a cab or prefer using the subway.
 	</svg>
 </div>
 <div class="innerbox">
+	<h2>Will there be a cab easily available at this hour?</h2>
+    <div id="chart"></div>
+    <div id="dataset-picker"></div>
+</div>
+
+<div class="innerbox">
 	<h2>Oh Shit&#x21; Is it a Weekend or a WeekDay?</h2>
 	<svg id="graph2" class="graph">
 	</svg>
@@ -112,8 +118,19 @@ decision of whether to take a cab or prefer using the subway.
 	</svg>
 </div>
 <div class="innerbox" id="div_graph6">
-    <h2>Map</h2>
-          
+    <h2>Map</h2>           
+        <article class="clock">
+                <div class="hours"></div>    
+            </article>
+            <select id="graph6_borough">
+                    <option value="Brooklyn">Brooklyn</option>
+                    <option value="Manhattan">Manhattan</option>
+                    <option value="Bronx">Bronx</option>
+                    <option value="Staten Island">Staten Island</option>
+                    <option value="Queens">Queens</option>
+                    <option value="ALL">ALL</option>
+                </select>
+                
 	<svg id="graph6" class="graph">
             <foreignobject>               
                     <article class="clock">

@@ -8,10 +8,43 @@ var myApp = angular.module('myApp', [])
 });
 
 $(document).ready(function(){
+  $("#graph6_borough").change(function(){
+    $("#graph6").empty();
+    $("#graph6").append("<foreignobject >"+               
+   "<article class='clock'>"+
+            "<div class='hours'></div>"+    
+        "</article>"+
+        "<select id='graph6_borough'>"+
+                "<option>Brooklyn</option>"+
+                "<option>Manhattan</option>"+
+                "<option>Bronx</option>"+
+                "<option>Staten Island</option>"+
+                "<option>Queens</option>"+
+            "</select>"+
+        
+"</foreignobject>");
+    width = $('#graph6').width();
+    height = $('#graph6').height();
+    angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup= $(this).children("option:selected").val();
+	drawGraph6(width, height);
+  });
   $('input[type=radio][name=question1]').change(function() {
 
     $("#graph6").empty();
-
+    $("#graph6").append("<foreignobject >"+               
+   "<article class='clock'>"+
+            "<div class='hours'></div>"+    
+        "</article>"+
+        "<select id='graph6_borough'>"+
+                "<option>Brooklyn</option>"+
+                "<option>Manhattan</option>"+
+                "<option>Bronx</option>"+
+                "<option>Staten Island</option>"+
+                "<option>Queens</option>"+
+            "</select>"+
+        
+"</foreignobject>");
+    
     width = $('#graph6').width();
 	  height = $('#graph6').height();
 	drawGraph6(width, height);

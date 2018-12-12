@@ -14,10 +14,14 @@ function drawGraph6(width, height){
             "Manhattan": [-74, 40.8],
             "Staten Island": [-74.3, 40.6],
             "Bronx": [-74.0, 40.8],
-            "Queens": [-74.0, 40.6]
-
+            "Queens": [-74.0, 40.6],
+            true:  [-74.0, 40.7]
           };
-    pickup_Data = angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup;
+          if(angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup == "ALL")
+            pickup_Data = true;
+        else{
+            pickup_Data= angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup;
+        }
     console.log(pickup_Data);      
     var projection = d3.geoMercator()  // set the map projection
         .scale(46000).center(dict[pickup_Data])  // these values will change depending on the region you want the map to show
@@ -40,6 +44,8 @@ function drawGraph6(width, height){
             .data(nyctaxis.features) // The features from your geojson file
             .enter()
             .filter(function(d){
+                if (pickup_Data == true)
+                    return true;
                 return d.properties["BoroName"] == pickup_Data
             })
             .append("path").attr("d", path)
@@ -68,6 +74,8 @@ function drawGraph6(width, height){
                 .transition()
                 .duration(1000)
                 .filter(function(d){
+                    if (pickup_Data == true)
+                        return true;
                     return d.properties["BoroName"] == pickup_Data;
                 })    
                 .style("fill",function(d){
