@@ -29,7 +29,6 @@ h1 {
 }
 h2{
 	margin-bottom: 0px;
-    margin-left: 7%;
     color: #FFFFFF;
     margin-top: 5%;
     text-align: center;
@@ -318,4 +317,6 @@ form {
   }
   #div_graph6 {
       width: 50%;
+      margin-left: 10em;
+      margin-right: 2em;
   }
