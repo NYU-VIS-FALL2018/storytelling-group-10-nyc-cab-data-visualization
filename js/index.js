@@ -3,7 +3,7 @@ var myApp = angular.module('myApp', [])
     .controller('myController', function($scope) {
   
         // we will store our form data in this object
-        $scope.pickup = "Brooklyn";
+        $scope.pickup = "ALL";
         $scope.dropOff = "";
 });
 

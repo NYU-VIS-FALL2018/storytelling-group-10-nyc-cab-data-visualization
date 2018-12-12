@@ -19,7 +19,7 @@ body {
     width: 90%;
     float: right;
     border-radius: 3em;
-    border: black .5em solid;
+    border: black .3em solid;
     background: linear-gradient(to right, rgb(255, 239, 186), rgb(255, 255, 255));
 }
 h1 {
@@ -32,6 +32,8 @@ h2{
     margin-left: 7%;
     color: #FFFFFF;
     margin-top: 5%;
+    text-align: center;
+    margin-bottom: 1em;
 }
 p{
 	display: block;
@@ -53,7 +55,7 @@ p{
 }
 .innerbox {
 	overflow: hidden;
-	width: 100%;
+	width: 80%;
 	height: 100%;
 	display: inline-block;
 }
@@ -108,11 +110,16 @@ p{
     -moz-backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
+.header {
+    text-align: justify;
+}
 .flipcard .front {
-    background: #220000;
+    background: darkslateblue;
     color: white;
     display: block;
     font-size: 50px;
+    width: 50%;
+    margin-left: 25%;
 }
 .flipcard.flipped .front {
     display:none;
@@ -273,17 +280,18 @@ form {
     font-size: 16px;
     border: 1px solid #ccc;
     height: 34px;
-    -webkit-appearance: none;
+    -webkit-appearance: menulist-button;
     -moz-appearance: none;
     appearance: none;
     background: #eee;
-    margin-left: 4em;
+    margin-left: 5em;
     margin-top: 5em;
-    background: linear-gradient(to right, rgb(192, 36, 37), rgb(240, 203, 53));
+    background: transparent;
+    border: #000 solid;
   }
 
   #graph6 {
-      margin-top: 2em;
+      margin-top: 1em;
   }
   
   /* CAUTION: IE hackery ahead */

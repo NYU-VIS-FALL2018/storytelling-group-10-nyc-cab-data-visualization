@@ -2,7 +2,7 @@ $(document).ready(function(){
   
 	width = $('#graph6').width();
 	height = $('#graph6').height();
-	//drawGraph6(width, height);
+	drawGraph6(width, height);
 });
 
 
@@ -40,7 +40,7 @@ function drawGraph6(width, height){
         
         var colorScale = d3.scaleLinear().domain([1,max])
         .interpolate(d3.interpolateHcl)
-        .range([d3.rgb("green"), d3.rgb('red')]);
+        .range([d3.rgb("#ffffd9"), d3.rgb("#c7e9b4"), d3.rgb("#41b6c4"), d3.rgb('#225ea8')]);
         // **** CREATE THE MAP ****
         var mymap = svg.selectAll("anystring")  // For these purposes, what goes here is irrelevant
             .data(nyctaxis.features) // The features from your geojson file
@@ -58,11 +58,12 @@ function drawGraph6(width, height){
                     max = temp
                 return colorScale(temp); // Viridis is one of D3's built in color ramps. More here: https://github.com/d3/d3-scale#interpolateViridis
             });
-        
+            colorScale = d3.scaleLinear().domain([1, max / 2, max + 1])
+            .range([d3.rgb("#1E9600"), d3.rgb("#FFF200"), d3.rgb("#FF0000")]);
         var displayHour = svg.append("text") // display the current hour
             .attr("x",30)  // position the text box on the screen. Coordinate [0,0] is the upper left corner.
             .attr("y",30)
-            .style("fill","white")
+            .style("fill","Black")
             .text("Hour : 0")
             .style("font-size", "20px")
          
