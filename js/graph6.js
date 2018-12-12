@@ -2,11 +2,12 @@ $(document).ready(function(){
   
 	width = $('#graph6').width();
 	height = $('#graph6').height();
-	drawGraph6(width, height);
+	//drawGraph6(width, height);
 });
 
 
 function drawGraph6(width, height){
+    console.log("in function ")
 	var svg = d3.select("#graph6") // set the width, height and color of the background
         ;
         var dict = {
@@ -14,16 +15,16 @@ function drawGraph6(width, height){
             "Manhattan": [-74, 40.8],
             "Staten Island": [-74.3, 40.6],
             "Bronx": [-74.0, 40.8],
-            "Queens": [-74.0, 40.6],
+            "Queens": [-74.0, 40.7],
             true:  [-74.0, 40.7]
           };
           if(angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup == "ALL")
             pickup_Data = true;
         else{
             pickup_Data= angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup;
-        }    
+        }     
     var projection = d3.geoMercator()  // set the map projection
-        .scale(46000).center(dict[pickup_Data])  // these values will change depending on the region you want the map to show
+        .scale(65000).center(dict[pickup_Data])  // these values will change depending on the region you want the map to show
         .translate([width / 2, height / 2]);
     
     var path = d3.geoPath()  // create a function to convert your map's coordinates to an svg path
@@ -32,6 +33,7 @@ function drawGraph6(width, height){
     d3.json("dataset/nyctaxipickups.geojson", function(error, nyctaxis) {  //load the geojson file
         if (error) throw error;
         var max = 0;
+        
         var colorScale = d3.scaleLinear().domain([1,max])
         .interpolate(d3.interpolateHcl)
         .range([d3.rgb("green"), d3.rgb('red')]);
@@ -57,7 +59,8 @@ function drawGraph6(width, height){
             .attr("x",30)  // position the text box on the screen. Coordinate [0,0] is the upper left corner.
             .attr("y",30)
             .style("fill","white")
-            .text("0");
+            .text("Hour : 0")
+            .style("font-size", "20px")
          
         // **** ANIMATE THE MAP'S COLORS ACCORDING TO THE HOURLY NUMBER OF PICKUPS ****
         var hour = 0;
@@ -77,7 +80,7 @@ function drawGraph6(width, height){
                     return colorScale(Math.log(pickupsThisHour) + 1);
                 });
             
-            displayHour.text(hour); // display the updated hour
+            displayHour.text("Hour : " + hour); // display the updated hour
         },1000); // repeat this function every second
         
     });
