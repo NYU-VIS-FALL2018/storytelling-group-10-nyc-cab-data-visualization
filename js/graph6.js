@@ -11,20 +11,24 @@ function drawGraph6(width, height){
 	var svg = d3.select("#graph6") // set the width, height and color of the background
         ;
         var dict = {
-            "Brooklyn": [-74.0, 40.6],
-            "Manhattan": [-74, 40.8],
-            "Staten Island": [-74.3, 40.6],
-            "Bronx": [-74.0, 40.8],
-            "Queens": [-74.0, 40.7],
+            "Brooklyn": [-73.9, 40.67],
+            "Manhattan": [-73.9, 40.8],
+            "Staten Island": [-74.15, 40.6],
+            "Bronx": [-73.85, 40.85],
+            "Queens": [-73.8, 40.7],
             true:  [-74.0, 40.7]
           };
-          if(angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup == "ALL")
+          var scale = 0
+          if(angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup == "ALL"){
             pickup_Data = true;
+            scale = 46000;
+          }
         else{
             pickup_Data= angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup;
+            scale = 75000;
         }     
     var projection = d3.geoMercator()  // set the map projection
-        .scale(65000).center(dict[pickup_Data])  // these values will change depending on the region you want the map to show
+        .scale(scale).center(dict[pickup_Data])  // these values will change depending on the region you want the map to show
         .translate([width / 2, height / 2]);
     
     var path = d3.geoPath()  // create a function to convert your map's coordinates to an svg path

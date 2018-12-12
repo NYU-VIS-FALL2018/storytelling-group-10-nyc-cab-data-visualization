@@ -35,7 +35,7 @@ var svg = d3.select("#graph4").append("svg")
 d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
   if (error) throw error;
 
-  var data = d3.nest()
+  var unsorted_data = d3.nest()
                 .key(function(d) {return Number(d.Hour);})
                 .rollup(function(d) {
                   return d3.mean(d, function(g) {return g.Duration;});
