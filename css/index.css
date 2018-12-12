@@ -1,6 +1,7 @@
 html, 
 body {
     height: 100%;
+    background: linear-gradient(to right, rgb(55, 59, 68), rgb(66, 134, 244))
 }
 #boroughs {
   stroke: grey;
@@ -17,7 +18,9 @@ body {
     height: 60%;
     width: 90%;
     float: right;
-    background-color: lightskyblue  ;
+    border-radius: 3em;
+    border: black .5em solid;
+    background: linear-gradient(to right, rgb(255, 239, 186), rgb(255, 255, 255));
 }
 h1 {
 	text-align: center;
@@ -45,7 +48,6 @@ p{
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
-	background: #1B1B1E;
 	white-space: nowrap;
     background-repeat: repeat-x;
 }
@@ -53,7 +55,6 @@ p{
 	overflow: hidden;
 	width: 100%;
 	height: 100%;
-	background: #1B1B1E;
 	display: inline-block;
 }
 .slide {
@@ -73,10 +74,6 @@ p{
     top: 86%;
     position: absolute;
     display: none;
-}
-
-body {
-    background: #bbb;
 }
 .firstScreen {
     width: 100%;
@@ -280,12 +277,13 @@ form {
     -moz-appearance: none;
     appearance: none;
     background: #eee;
-    margin-left: 10%;
-    margin-top: 5%;
+    margin-left: 4em;
+    margin-top: 5em;
+    background: linear-gradient(to right, rgb(192, 36, 37), rgb(240, 203, 53));
   }
-  text{
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      font-size: 16px;
+
+  #graph6 {
+      margin-top: 2em;
   }
   
   /* CAUTION: IE hackery ahead */
@@ -293,6 +291,10 @@ form {
   
   select::-ms-expand { 
       display: none; /* remove default arrow in IE 10 and 11 */
+      background: linear-gradient(to right, rgb(192, 36, 37), rgb(240, 203, 53));
+  }
+  select::after{
+    background: linear-gradient(to right, rgb(192, 36, 37), rgb(240, 203, 53));
   }
   
   /* target Internet Explorer 9 to undo the custom arrow */
@@ -302,4 +304,10 @@ form {
           padding: 5px\9;
       }
   }
-  
+  .line_axis{
+    font-weight: bold;
+    stroke-width: 2px;
+  }
+  #div_graph6 {
+      width: 50%;
+  }
