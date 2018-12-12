@@ -2,7 +2,7 @@
 $(document).ready(function(){
 	width = $('#graph4').width();
 	height = $('#graph4').height();
-	drawGraph4(width, height);
+	drawGraph4(width, height - 20);
 });
 
 function drawGraph4(w,h){
@@ -95,6 +95,22 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
       .call(d3.axisLeft(y))
       .attr("stroke-width", "2px")
       .attr("font-wight", "bold");
+
+      svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Averge Trip Duration(minutes)");
+     
+      svg.append("text")             
+      .attr("transform",
+            "translate(" + (width/2) + " ," + 
+                           (height + 30) + ")")
+      .style("text-anchor", "middle")
+      .text("Hour of the Day");
+
 
 });
 }

@@ -3,7 +3,7 @@ $(document).ready(function(){
   
 	width = $('#graph2').width();
 	height = $('#graph2').height();
-	drawGraph2(width, height);
+	//drawGraph2(width, height);
 });
 
 function drawGraph2(w,h){

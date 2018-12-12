@@ -53,13 +53,13 @@ $(document).ready(function(){
 var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
 $('#features').animateNumber(
   {
-    number: 10,
+    number: 9,
     numberStep: comma_separator_number_step
   }, 1000
 );
 $('#examples').animateNumber(
   {
-    number: 8000000,
+    number: 17144,
     numberStep: comma_separator_number_step
   }, 1000
 );
