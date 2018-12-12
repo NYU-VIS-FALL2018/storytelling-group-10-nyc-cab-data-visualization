@@ -3,12 +3,19 @@ var myApp = angular.module('myApp', [])
     .controller('myController', function($scope) {
   
         // we will store our form data in this object
-        $scope.pickup = "";
+        $scope.pickup = "Brooklyn";
         $scope.dropOff = "";
 });
 
 $(document).ready(function(){
+  $('input[type=radio][name=question1]').change(function() {
 
+    $("#graph6").empty();
+
+    width = $('#graph6').width();
+	  height = $('#graph6').height();
+	drawGraph6(width, height);
+  });
 var total = $(".outerbox")[0].scrollWidth - $(".outerbox").width();
 var width = $(".outerbox").width();	
 console.log(width);

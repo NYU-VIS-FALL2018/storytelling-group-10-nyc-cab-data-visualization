@@ -227,3 +227,75 @@ form {
         background-color: lighten($accentcolor, 15%);
     }
 }
+
+.clock {
+    display: inline-block;
+    border-radius: 50%;
+    background: #fff url(../images/ios_clock.svg) no-repeat center;
+    /* background-size: 88%; */
+    height: 0em;
+    padding-bottom: 6em;
+    /* position: absolute; */
+    width: 6em;
+  }
+  
+  .clock.simple:after {
+    background: #000;
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5%;
+    height: 5%;
+    z-index: 10;
+  }
+  .hours {
+    animation: rotate 10s infinite linear;
+    white-space: normal;
+    background: #e60000;
+    height: 1.5em;
+    left: 48.75%;
+    position: relative;
+    top: 1em;
+    transform-origin: 50% 100%;
+    width: .2em;
+  }
+  @keyframes rotate {
+    100% {
+      transform: rotateZ(360deg);
+    }
+  }
+  .hours-container {
+    animation: rotate 43000s infinite linear;
+  }
+  select {
+    margin: 50px;
+    width: 150px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #eee;
+  }
+  
+  
+  /* CAUTION: IE hackery ahead */
+  
+  
+  select::-ms-expand { 
+      display: none; /* remove default arrow in IE 10 and 11 */
+  }
+  
+  /* target Internet Explorer 9 to undo the custom arrow */
+  @media screen and (min-width:0\0) {
+      select {
+          background:none\9;
+          padding: 5px\9;
+      }
+  }
+  
