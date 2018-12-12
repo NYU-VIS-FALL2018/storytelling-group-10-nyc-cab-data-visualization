@@ -35,29 +35,33 @@ var svg = d3.select("#graph4").append("svg")
 d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
   if (error) throw error;
 
-  var borough_data = 
 
   var unsorted_data = d3.nest()
                 .key(function(d) {return Number(d.Hour);})
-                .sortKeys(d3.ascending)
                 .rollup(function(d) {
                   return d3.mean(d, function(g) {return g.Duration;});
                 }).entries(csv_data);
 
-  var data = {};
-  Object.keys(unsorted_data).sort().forEach(function(key) {
-  data[key] = unsorted_data[key];
-  });             
+  unsorted_data.forEach(function(d) {
+      d.key = +d.key;
+      d.value = +d.value;
+  });
 
-  // data = d3.nest()
-  //           .key(function(d) {return parseInt(d.key);})
-  //           .sortKeys(d3.ascending)
-  //           .entries(data);
+  keys = []
+  unsorted_data.forEach(function(d){
+    keys.push(+d.key)
+  })
 
-  // data.forEach(function(d) {
-  //     d.time_drop = d.key;
-  //     d.avg_duration = d.value;
-  // });
+  data = new Array(24);
+
+  for(i=0;i<unsorted_data.length;i++){
+    data[unsorted_data[i].key] = unsorted_data[i];
+  }
+
+  data.forEach(function(d) {
+      d.time_drop = d.key;
+      d.avg_duration = d.value;
+  });
 
   console.log(data);
 
