@@ -26,25 +26,25 @@ var colorScale = d3.scaleLinear().domain([1,57560])
       .range([d3.rgb("green"), d3.rgb('red')]);
 
 // get the data
-d3.csv("dataset/vis1_d3.csv", function(error, data) {
+d3.csv("dataset/final_project_data.csv", function(error, data) {
   if (error) throw error;
 
   // Scale the range of the data in the domains
-  x.domain(data.map(function(d) { return d.time_pick; }));
-  y.domain([0, d3.max(data, function(d) { return d.count / 10; })]);
+  x.domain(data.map(function(d) { return d.Hour; }));
+  y.domain([0, d3.max(data, function(d) { return d.Count_of_rides / 10; })]);
 
   // append the rectangles for the bar chart
   svg.selectAll(".bar")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.time_pick); })
+      .attr("x", function(d) { return x(d.Hour); })
       .attr("width", x.bandwidth())
-      .attr("y", function(d) { return y(d.count/10); })
-      .attr("height", function(d) { return height - y(d.count/10); })
-	  .style("fill", function(d) { return colorScale(d.count/10); })
+      .attr("y", function(d) { return y(d.Count_of_rides/10); })
+      .attr("height", function(d) { return height - y(d.Count_of_rides/10); })
+	  .style("fill", function(d) { return colorScale(d.Count_of_rides/10); })
 	  .append("svg:title")
-   	  .text(function(d) { return d.count / 10; });;
+   	  .text(function(d) { return d.Count_of_rides / 10; });;
   // add the x Axis
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")

@@ -7,7 +7,6 @@ $(document).ready(function(){
 });
 
 function drawGraph2(w,h){
-	console.log("hello from graph 2")
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = w - margin.left - margin.right,
     height = h - margin.top - margin.bottom;
@@ -36,7 +35,6 @@ var colorScale = d3.scaleLinear().domain([10, 16])
 // get the data
 d3.csv("dataset/vis2.csv", function(error, data) {
   if (error) throw error;
-  console.log(data)
   // Scale the range of the data in the domains
   x.domain(data.map(function(d) { return d.date_pick; }));
   y.domain([0, d3.max(data, function(d) { return d.count; })]);
@@ -51,8 +49,6 @@ d3.csv("dataset/vis2.csv", function(error, data) {
       .attr("y", function(d) { return y(d.count); })
       .attr("height", function(d) { return height - y(d.count); })
 	    .style("fill", function(d) { 
-        console.log("hello");
-        console.log(colorScale(d.count));
         return colorScale(d.count); })
 	    .append("svg:title")
    	  .text(function(d) { return d.count; });;

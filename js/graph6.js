@@ -21,8 +21,7 @@ function drawGraph6(width, height){
             pickup_Data = true;
         else{
             pickup_Data= angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup;
-        }
-    console.log(pickup_Data);      
+        }    
     var projection = d3.geoMercator()  // set the map projection
         .scale(46000).center(dict[pickup_Data])  // these values will change depending on the region you want the map to show
         .translate([width / 2, height / 2]);
@@ -33,9 +32,6 @@ function drawGraph6(width, height){
     d3.json("dataset/nyctaxipickups.geojson", function(error, nyctaxis) {  //load the geojson file
         if (error) throw error;
         var max = 0;
-        
-        
-        console.log(nyctaxis)
         var colorScale = d3.scaleLinear().domain([1,max])
         .interpolate(d3.interpolateHcl)
         .range([d3.rgb("green"), d3.rgb('red')]);
@@ -51,13 +47,11 @@ function drawGraph6(width, height){
             .append("path").attr("d", path)
             .style("fill",function(d){ // set the colors of each feature
                 var pickupsInHour0 = d.properties["hour0"]; // You can reference any of your map's attributes in this way
-                // console.log(pickupsInHour0 / 100);
                 var temp = Math.log(pickupsInHour0) + 1
                 if (temp > max)
                     max = temp
                 return colorScale(temp); // Viridis is one of D3's built in color ramps. More here: https://github.com/d3/d3-scale#interpolateViridis
             });
-        console.log("max value is ", max);
         
         var displayHour = svg.append("text") // display the current hour
             .attr("x",30)  // position the text box on the screen. Coordinate [0,0] is the upper left corner.
