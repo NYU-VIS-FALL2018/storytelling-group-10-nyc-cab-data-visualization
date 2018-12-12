@@ -51,7 +51,6 @@ $(document).ready(function(){
   });
 var total = $(".outerbox")[0].scrollWidth - $(".outerbox").width();
 var width = $(".outerbox").width();	
-console.log(width);
 
 var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
 $('#features').animateNumber(
@@ -69,8 +68,6 @@ $('#examples').animateNumber(
 $(".slide").width(width);
 $(".outerbox").scroll(function() {
      // use the value from $(window).scrollTop();
-     console.log(" in scroll")
-    // console.log($(".outerbox").scrollLeft());
      var per = $(".outerbox").scrollLeft(); 
      
      var value = ((per * width) / total);
@@ -80,7 +77,6 @@ $(".outerbox").scroll(function() {
  });
 
 $('.front').click(function (e) {
-	console.log("hello");
     var $card = $(this).parent();
     $(".header").css("display", "none")
     $(".slide").css("display", "block");

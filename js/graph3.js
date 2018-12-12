@@ -3,14 +3,12 @@ $(document).ready(function(){
 	width = $('#graph3').width();
 	height = $('#graph3').height();
   data = readData();
-  console.log(data)
   drawMap(width, height);
 	// drawGraph2(width, height);
   // addColorsToBoroughs()
 });
 function readData() {
   d3.json("dataset/boroughs_population.json",function(error, data) {
-    console.log(data)
   });
 }
 function drawMap(width, height) {
@@ -22,7 +20,6 @@ function drawMap(width, height) {
   d3.json("dataset/nyc.json", function(error, nyb) {
 
     d3.json("dataset/boroughs_population.json",function(error, data) {
-      console.log(data)
     var projection = d3.geoMercator()
             .center([-73.94, 40.70])
             .scale(34000)

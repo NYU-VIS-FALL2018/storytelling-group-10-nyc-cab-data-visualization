@@ -49,13 +49,11 @@ function drawGraph6(width, height){
             .append("path").attr("d", path)
             .style("fill",function(d){ // set the colors of each feature
                 var pickupsInHour0 = d.properties["hour0"]; // You can reference any of your map's attributes in this way
-                // console.log(pickupsInHour0 / 100);
                 var temp = Math.log(pickupsInHour0) + 1
                 if (temp > max)
                     max = temp
                 return colorScale(temp); // Viridis is one of D3's built in color ramps. More here: https://github.com/d3/d3-scale#interpolateViridis
             });
-        console.log("max value is ", max);
         
         var displayHour = svg.append("text") // display the current hour
             .attr("x",30)  // position the text box on the screen. Coordinate [0,0] is the upper left corner.
