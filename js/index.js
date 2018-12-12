@@ -49,8 +49,6 @@ $(document).ready(function(){
 	  height = $('#graph6').height();
 	drawGraph6(width, height);
   });
-var total = $(".outerbox")[0].scrollWidth - $(".outerbox").width();
-var width = $(".outerbox").width();	
 
 var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
 $('#features').animateNumber(
@@ -65,12 +63,15 @@ $('#examples').animateNumber(
     numberStep: comma_separator_number_step
   }, 1000
 );
-$(".slide").width(width);
+$(".slide").width($(".outerbox").width());
 $(".outerbox").scroll(function() {
      // use the value from $(window).scrollTop();
      var per = $(".outerbox").scrollLeft(); 
-     
-     var value = ((per * width) / total);
+     var total = $(".outerbox")[0].scrollWidth - $(".outerbox").width();
+     var width = $(".outerbox").width();	
+          
+     var value = ((per * width) / total) - 123;
+     console.log(width)
      value = Math.max(0, value);
      $(".taxi").css({left : value});
      // $(".taxi").scrollLeft($(".outerbox").scrollLeft())

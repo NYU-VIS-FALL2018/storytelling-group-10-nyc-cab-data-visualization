@@ -70,6 +70,7 @@ function(error, data) {
         .attr("width", gridSize)
         .attr("height", gridSize)
         .style("fill", function(d) { return colorScale(d.value);});
+        .style("fill", function(d) {return colorScale(d.value);});
 
     cards.transition().duration(1000)
         .style("fill", function(d) { return colorScale(d.value); });

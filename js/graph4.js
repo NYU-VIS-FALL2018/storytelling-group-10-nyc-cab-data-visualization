@@ -35,8 +35,7 @@ var svg = d3.select("#graph4").append("svg")
 d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
   if (error) throw error;
 
-
-  var unsorted_data = d3.nest()
+  var data = d3.nest()
                 .key(function(d) {return Number(d.Hour);})
                 .rollup(function(d) {
                   return d3.mean(d, function(g) {return g.Duration;});
@@ -46,17 +45,24 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
       d.key = +d.key;
       d.value = +d.value;
   });
+//   var data = {};
+//   Object.keys(unsorted_data).sort().forEach(function(key) {
+//   data[key] = unsorted_data[key];
+//   });             
+
 
   keys = []
   unsorted_data.forEach(function(d){
     keys.push(+d.key)
   })
 
+
   data = new Array(24);
 
   for(i=0;i<unsorted_data.length;i++){
     data[unsorted_data[i].key] = unsorted_data[i];
   }
+
 
   data.forEach(function(d) {
       d.time_drop = d.key;
@@ -79,11 +85,16 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
   // Add the X Axis
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+      .call(d3.axisBottom(x))
+      .attr("stroke-width", "2px")
+      .attr("font-wight", "bold");
+
 
   // Add the Y Axis
   svg.append("g")
-      .call(d3.axisLeft(y));
+      .call(d3.axisLeft(y))
+      .attr("stroke-width", "2px")
+      .attr("font-wight", "bold");
 
 });
 }
