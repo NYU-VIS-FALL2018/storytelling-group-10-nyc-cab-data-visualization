@@ -67,23 +67,23 @@ decision of whether to take a cab or prefer using the subway.
 	<p>Please select the drop-off location</p>
  <ul class="list">
   <li class="list__item">
-   <input type="radio" class="radio-btn" name="question2" id="a-question2" ng-model = "dropoff" value="Brooklyn" />
+   <input type="radio" class="radio-btn" name="question2" id="a-question2" ng-model = "dropOff" value="Brooklyn" />
    <label for="a-question2" class="label">Brooklyn</label>
   </li>
   <li class="list__item">
-   <input type="radio" class="radio-btn" name="question2" id="b-question2" ng-model = "dropoff" value="Manhattan" />
+   <input type="radio" class="radio-btn" name="question2" id="b-question2" ng-model = "dropOff" value="Manhattan" />
    <label for="b-question2" class="label">Manhattan</label>
   </li>
   <li class="list__item">
-   <input type="radio" class="radio-btn" name="question2" id="c-question2" ng-model = "dropoff" value="Bronx" />
+   <input type="radio" class="radio-btn" name="question2" id="c-question2" ng-model = "dropOff" value="Bronx" />
    <label for="c-question2" class="label">Bronx</label>
   </li>
   <li class="list__item">
-   <input type="radio" class="radio-btn" name="question2" id="d-question2" ng-model = "dropoff" value="Staten Island" />
+   <input type="radio" class="radio-btn" name="question2" id="d-question2" ng-model = "dropOff" value="Staten Island" />
    <label for="d-question2" class="label">Staten Island</label>
   </li>
   <li class="list__item">
-   <input type="radio" class="radio-btn" name="question2" id="e-question2" ng-model = "dropoff" value="Queens" />
+   <input type="radio" class="radio-btn" name="question2" id="e-question2" ng-model = "dropOff" value="Queens" />
    <label for="e-question2" class="label">Queens</label>
   </li>
  </ul>
@@ -93,7 +93,7 @@ decision of whether to take a cab or prefer using the subway.
 </div>
 <div class="innerbox">
 	<h2>Will there be a cab easily available at this hour?</h2>
-    <div id="chart"></div>
+    <div id="chart" class="graph"></div>
 </div>
 <div class="innerbox">
 	<h2>How much should I tip the driver ?</h2>

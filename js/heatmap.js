@@ -55,8 +55,8 @@ function(error, data) {
     //     .domain([0, buckets - 1, d3.max(data, function (d) { return Math.log2(d.value); })])
     //     .range(colors);
     var max = d3.max(data, function (d) { return Math.log2(d.value); });
-    var colorScale = d3.scaleLinear().domain([max, max / 2, max/3, 1])
-    .range([d3.rgb("#FFFF00"),d3.rgb("#FFFF33"), d3.rgb("#FFFF66"), d3.rgb("#FFFF99")]);
+    var colorScale = d3.scaleLinear().domain([max/2, max/32])
+    .range([d3.rgb("#0f3443"), d3.rgb("#34e89e")]);
 
     var cards = svg.selectAll(".hour")
         .data(data, function(d) { return ((d.day%7)+1)+':'+d.hour;});

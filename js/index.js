@@ -4,7 +4,7 @@ var myApp = angular.module('myApp', [])
   
         // we will store our form data in this object
         $scope.pickup = "ALL";
-        $scope.dropOff = "";
+        $scope.dropOff = "ALL";
 });
 
 $(document).ready(function(){
@@ -26,28 +26,27 @@ $(document).ready(function(){
     width = $('#graph6').width();
     height = $('#graph6').height();
     angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup= $(this).children("option:selected").val();
-	drawGraph6(width, height);
+  drawGraph6(width, height);
+  
+
   });
   $('input[type=radio][name=question1]').change(function() {
 
     $("#graph6").not("foreignobject").empty();
-//     $("#graph6").append("<foreignobject >"+               
-//    "<article class='clock'>"+
-//             "<div class='hours'></div>"+    
-//         "</article>"+
-//         "<select id='graph6_borough'>"+
-//                 "<option>Brooklyn</option>"+
-//                 "<option>Manhattan</option>"+
-//                 "<option>Bronx</option>"+
-//                 "<option>Staten Island</option>"+
-//                 "<option>Queens</option>"+
-//             "</select>"+
-        
-// "</foreignobject>");
-    
     width = $('#graph6').width();
 	  height = $('#graph6').height();
-	drawGraph6(width, height);
+  drawGraph6(width, height);
+  $("#graph4").empty();
+  width = $('#graph4').width();
+	height = $('#graph4').height();
+	drawGraph4(width, height - 20);
+  });
+  $('input[type=radio][name=question2]').change(function() {
+
+  $("#graph4").empty();
+  width = $('#graph4').width();
+	height = $('#graph4').height();
+	drawGraph4(width, height - 20);
   });
 
 var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
