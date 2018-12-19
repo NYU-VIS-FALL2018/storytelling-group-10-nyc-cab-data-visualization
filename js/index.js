@@ -37,16 +37,20 @@ $(document).ready(function(){
 	  height = $('#graph6').height();
   drawGraph6(width, height);
   $("#graph4").empty();
+  $("#chart").empty();
   width = $('#graph4').width();
 	height = $('#graph4').height();
-	drawGraph4(width, height - 20);
+  drawGraph4(width, height - 20);
+  heatmap();
   });
   $('input[type=radio][name=question2]').change(function() {
 
   $("#graph4").empty();
+  $("#chart").empty();
   width = $('#graph4').width();
 	height = $('#graph4').height();
-	drawGraph4(width, height - 20);
+  drawGraph4(width, height - 20);
+  heatmap();
   });
 
 var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
@@ -70,7 +74,6 @@ $(".outerbox").scroll(function() {
      var width = $(".outerbox").width();	
           
      var value = ((per * width) / total) - 123;
-     console.log(width)
      value = Math.max(0, value);
      $(".taxi").css({left : value});
      // $(".taxi").scrollLeft($(".outerbox").scrollLeft())

@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 
 function drawGraph6(width, height){
-    console.log("in function ")
+    // console.log("in function ")
 	var svg = d3.select("#graph6") // set the width, height and color of the background
         ;
         var dict = {

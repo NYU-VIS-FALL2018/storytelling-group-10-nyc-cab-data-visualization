@@ -1,6 +1,10 @@
 
 $(document).ready(function(){
-  
+    heatmap()
+});
+
+heatmap = function(){
+    
 	var margin = { top: 50, right: 0, bottom: 100, left: 30 },
     width = 960 - margin.left - margin.right,
     height = 430 - margin.top - margin.bottom,
@@ -26,7 +30,7 @@ var dayLabels = svg.selectAll(".dayLabel")
     .attr("x", 0)
     .attr("y", function (d, i) { return i * gridSize; })
     .style("text-anchor", "end")
-    .style("fill", "white")
+    .style("fill", "black")
     .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
     .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
 
@@ -36,21 +40,53 @@ var timeLabels = svg.selectAll(".timeLabel")
     .text(function(d) { return d; })
     .attr("x", function(d, i) { return i * gridSize; })
     .attr("y", 0)
-    .attr("fill", "white")
+    .attr("fill", "black")
     .style("text-anchor", "middle")
     .attr("transform", "translate(" + gridSize / 2 + ", -6)")
     .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
 
-var heatmapChart = function(csvFile) {
-d3.csv(csvFile,
-function(d) {
-    return {
-    day: +d.Date.split("/")[1],
-    hour: +d.Hour,
-    value: +d.Count_of_rides/100
-    };
-},
-function(error, data) {
+var heatmapChart = function() {
+d3.csv("dataset/final_project_data.csv",
+function(error, csv_data) {
+    if (error) throw error;
+    var pickup_location = angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup;
+    var drop_location = angular.element(document.querySelector('[ng-controller="myController"]')).scope().dropOff;    
+
+    if( pickup_location != "ALL" && drop_location != "ALL")
+        csv_data = csv_data.filter(function(d) { return (d.Source_Borough  == pickup_location && d.Drop_Borough  == drop_location);});
+    else if( pickup_location != "ALL"){
+        csv_data = csv_data.filter(function(d) { return d.Source_Borough  == pickup_location;});
+    }
+    else if( drop_location != "ALL"){
+        csv_data = csv_data.filter(function(d) { return d.Drop_Borough  == drop_location;});
+    }
+
+    inputdata = csv_data.map(element => {
+        return {
+            day: +((element.Date.split("/")[1]%7)+1),
+            hour: +element.Hour,
+            value: +element.Count_of_rides/100
+            };
+    });
+    var dataGroupedByDay = d3.nest()
+    .key(function(d) {return Number(d.day);})
+    .key(function(d) {return Number(d.hour);})
+    .rollup(function(d) {
+      return d3.mean(d, function(g) {return g.value;});
+    }).entries(inputdata);
+
+    var data = []
+    for (var dayelement in dataGroupedByDay)
+    {
+        for (var hourelement in dataGroupedByDay[dayelement].values)
+        // console.log(hourelement)
+        data.push({
+            day: dataGroupedByDay[dayelement].key,
+            hour: dataGroupedByDay[dayelement].values[hourelement].key,
+            value: dataGroupedByDay[dayelement].values[hourelement].value
+        })
+    }
+    console.log(data)
     // var colorScale = d3.scaleQuantile()
     //     .domain([0, buckets - 1, d3.max(data, function (d) { return Math.log2(d.value); })])
     //     .range(colors);
@@ -59,13 +95,13 @@ function(error, data) {
     .range([d3.rgb("#0f3443"), d3.rgb("#34e89e")]);
 
     var cards = svg.selectAll(".hour")
-        .data(data, function(d) { return ((d.day%7)+1)+':'+d.hour;});
+        .data(data, function(d) { return d.day+':'+d.hour;});
 
     cards.append("title");
 
     cards.enter().append("rect")
         .attr("x", function(d) { return (d.hour - 1) * gridSize + 45; })
-        .attr("y", function(d) { return (((d.day%7)+1) - 1) * gridSize; })
+        .attr("y", function(d) { return (d.day - 1) * gridSize; })
         .attr("rx", 4)
         .attr("ry", 4)
         .attr("class", "hour bordered")
@@ -105,7 +141,7 @@ function(error, data) {
 });  
 };
 
-heatmapChart(datasets[0]);
+heatmapChart();
 
-});
+}
 

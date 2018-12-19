@@ -36,7 +36,7 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
   if (error) throw error;
   var pickup_location = angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup;
   var drop_location = angular.element(document.querySelector('[ng-controller="myController"]')).scope().dropOff;    
-  console.log(pickup_location + " " + drop_location)
+  // console.log(pickup_location + " " + drop_location)
 
   if( pickup_location != "ALL" && drop_location != "ALL")
     csv_data = csv_data.filter(function(d) { return (d.Source_Borough  == pickup_location && d.Drop_Borough  == drop_location);});
@@ -46,7 +46,7 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
   else if( drop_location != "ALL"){
     csv_data = csv_data.filter(function(d) { return d.Drop_Borough  == drop_location;});
   }
-  console.log(csv_data)
+  // console.log(csv_data)
   var unsorted_data = d3.nest()
                 .key(function(d) {return Number(d.Hour);})
                 .rollup(function(d) {
@@ -81,7 +81,7 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
       d.avg_duration = d.value;
   });
 
-  console.log(data);
+  // console.log(data);
 
   
   // Scale the range of the data
