@@ -71,9 +71,6 @@
       } else {
           $card.addClass('flipped');
       }
-      width = $('#graph1').width();
-    height = $('#graph1').height();
-    drawGraph(width, height);
     $(".outerbox").css("overflow", "auto");
   });
 
