@@ -70,8 +70,8 @@ p{
 }
 .taxi {
 	background-image: url(../images/taxi.png);
-    height: 8%;
-    width: 123px;
+    height: 3.4em;
+    width: 8.1em;
     top: 86%;
     position: absolute;
     display: none;
