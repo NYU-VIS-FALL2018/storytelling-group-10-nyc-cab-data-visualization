@@ -66,6 +66,7 @@
       $(".header").css("display", "none")
       $(".slide").css("display", "block");
       $(".taxi").css("display", "block");
+      $(".arrow").css("display", "block");
       if ($card.hasClass("flipped")) {
           $card.removeClass('flipped');
       } else {
