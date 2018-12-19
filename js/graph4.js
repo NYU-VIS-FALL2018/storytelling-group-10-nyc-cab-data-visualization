@@ -1,12 +1,12 @@
 
 $(document).ready(function(){
-	width = $('#graph4').width();
-	height = $('#graph4').height();
-	drawGraph4(width, height - 20);
+  width = $('#graph4').width();
+  height = $('#graph4').height();
+  drawGraph4(width, height - 20);
 });
 
 function drawGraph4(w,h){
-	var margin = {top: 20, right: 20, bottom: 30, left: 50},
+  var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = w - margin.left - margin.right,
     height = h - margin.top - margin.bottom;
 
@@ -36,7 +36,7 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
   if (error) throw error;
   var pickup_location = angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup;
   var drop_location = angular.element(document.querySelector('[ng-controller="myController"]')).scope().dropOff;    
-  // console.log(pickup_location + " " + drop_location)
+
 
   if( pickup_location != "ALL" && drop_location != "ALL")
     csv_data = csv_data.filter(function(d) { return (d.Source_Borough  == pickup_location && d.Drop_Borough  == drop_location);});
@@ -46,7 +46,7 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
   else if( drop_location != "ALL"){
     csv_data = csv_data.filter(function(d) { return d.Drop_Borough  == drop_location;});
   }
-  // console.log(csv_data)
+
   var unsorted_data = d3.nest()
                 .key(function(d) {return Number(d.Hour);})
                 .rollup(function(d) {
@@ -65,16 +65,9 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
     svg.append("text")
     .attr("y", height / 2)
     .attr("x",(width/3))
-    .text("Sorry data is not available for the selected locations.")
+    .text("Insufficient data to generate the Graph")
     return
   }
-
-//   var data = {};
-//   Object.keys(unsorted_data).sort().forEach(function(key) {
-//   data[key] = unsorted_data[key];
-//   });             
-
-
   keys = []
   unsorted_data.forEach(function(d){
     keys.push(+d.key)
@@ -92,13 +85,9 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
       d.time_drop = d.key;
       d.avg_duration = d.value;
   });
-
-  // console.log(data);
-
-  
   // Scale the range of the data
   x.domain([ 0, d3.max(data, function(d) {
-       return parseInt(d.time_drop); })]);
+      return parseInt(d.time_drop); })]);
   y.domain([ d3.min(data, function(d) { 
     return d.avg_duration; }), d3.max(data, function(d) { 
       return d.avg_duration; })]);
@@ -130,14 +119,12 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
       .attr("dy", "1em")
       .style("text-anchor", "middle")
       .text("Averge Trip Duration(minutes)");
-     
+    
       svg.append("text")             
       .attr("transform",
             "translate(" + (width/2) + " ," + 
-                           (height + 30) + ")")
+                          (height + 30) + ")")
       .style("text-anchor", "middle")
       .text("Hour of the Day");
-
-
 });
 }

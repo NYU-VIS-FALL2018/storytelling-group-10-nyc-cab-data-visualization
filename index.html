@@ -1,143 +1,122 @@
-<!DOCTYPE html>
-<html>
-<head>
-	
-    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto'>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
-	<script src="//d3js.org/d3.v4.min.js"></script>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto'>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-animateNumber/0.0.14/jquery.animateNumber.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script src="//d3js.org/d3.v4.min.js"></script>
 
-	<script type="text/javascript" src="js/heatmap.js"></script>
-	<script type="text/javascript" src="js/graph1.js"></script>
-	<script type="text/javascript" src="js/graph2.js"></script>
-	<script type="text/javascript" src="js/graph3.js"></script>
-	<script type="text/javascript" src="js/graph4.js"></script>
-	<script type="text/javascript" src="js/graph6.js"></script>
-	<title>NYC Taxi visualization</title>
-</head>
-<body>
-<div class="outerbox" id="outer" ng-app="myApp" ng-controller="myController">
-<div class="innerbox firstScreen">
-<div class="flipcard">
-	<div class="header">
-	<div class="heading">NYC Taxi data visualization</div>
-	<div class="content">As we know public transportation is one of the most important part of New York City, through
-this data visualization project we aim at analysing the yellow cabs data provided by NYC Open
-Data source and generate visualizations that would help a New York cab rider to make a
-decision of whether to take a cab or prefer using the subway.
-</div>
-<div class="stats"> Some of our stats</div>
-<ul>
-	<li>Total Number of features <span id="features"></span></li>
-	<li>Total Number of examples <span id="examples"></span></li>
-</ul>
-</div>
-    <div class="face front">Lets Start the ride <img src="http://www.animatedimages.org/data/media/111/animated-arrow-image-0039.gif" border="0" alt="animated-arrow-image-0039" /></div>
-    <div class="face back">
- <div class="container">
- 	<p>Please select the pick-up location</p>
- <ul class="list">
-  <li class="list__item">
-   <input type="radio" class="radio-btn" name="question1" id="a-question1" ng-model = "pickup" value="Brooklyn" />
-   <label for="a-question1" class="label">Brooklyn</label>
-  </li>
-  <li class="list__item">
-   <input type="radio" class="radio-btn" name="question1" id="b-question1" ng-model = "pickup" value="Manhattan" />
-   <label for="b-question1" class="label">Manhattan</label>
-  </li>
-  <li class="list__item">
-   <input type="radio" class="radio-btn" name="question1" id="c-question1" ng-model = "pickup" value="Bronx" />
-   <label for="c-question1" class="label">Bronx</label>
-  </li>
-  <li class="list__item">
-   <input type="radio" class="radio-btn" name="question1" id="d-question1" ng-model = "pickup" value="Staten Island" />
-   <label for="d-question1" class="label">Staten Island</label>
-  </li>
-  <li class="list__item">
-   <input type="radio" class="radio-btn" name="question1" id="e-question1" ng-model = "pickup" value="Queens" />
-   <label for="e-question1" class="label">Queens</label>
-  </li>
- </ul>
-</div>
-<div class="container">
-	<p>Please select the drop-off location</p>
- <ul class="list">
-  <li class="list__item">
-   <input type="radio" class="radio-btn" name="question2" id="a-question2" ng-model = "dropOff" value="Brooklyn" />
-   <label for="a-question2" class="label">Brooklyn</label>
-  </li>
-  <li class="list__item">
-   <input type="radio" class="radio-btn" name="question2" id="b-question2" ng-model = "dropOff" value="Manhattan" />
-   <label for="b-question2" class="label">Manhattan</label>
-  </li>
-  <li class="list__item">
-   <input type="radio" class="radio-btn" name="question2" id="c-question2" ng-model = "dropOff" value="Bronx" />
-   <label for="c-question2" class="label">Bronx</label>
-  </li>
-  <li class="list__item">
-   <input type="radio" class="radio-btn" name="question2" id="d-question2" ng-model = "dropOff" value="Staten Island" />
-   <label for="d-question2" class="label">Staten Island</label>
-  </li>
-  <li class="list__item">
-   <input type="radio" class="radio-btn" name="question2" id="e-question2" ng-model = "dropOff" value="Queens" />
-   <label for="e-question2" class="label">Queens</label>
-  </li>
- </ul>
-</div>
-</div>
-</div>
-</div>
-<div class="innerbox">
-	<h2>Will there be a cab easily available at this hour?</h2>
-    <div id="chart" class="graph"></div>
-</div>
-<div class="innerbox">
-	<h2>How much should I tip the driver ?</h2>
-    <svg id ="graph3" class="graph"></svg>
-</div>
-<div class="innerbox">
-	<h2>I wonder if I'll reach before the movie starts?</h2>
-	<svg id="graph4" class="graph">
-	</svg>
-</div>
-<div class="innerbox" id="div_graph6">
-    <h2>Cab Pick-up frequency against hours</h2>           
-        <!-- <article class="clock">
-                <div class="hours"></div>    
-            </article>
-            <select id="graph6_borough">
+        <script type="text/javascript" src="js/heatmap.js"></script>
+        <script type="text/javascript" src="js/graph1.js"></script>
+        <script type="text/javascript" src="js/graph2.js"></script>
+        <script type="text/javascript" src="js/graph3.js"></script>
+        <script type="text/javascript" src="js/graph4.js"></script>
+        <script type="text/javascript" src="js/graph6.js"></script>
+        <title>NYC Taxi visualization</title>
+    </head>
+    <body>
+    <div class="outerbox" id="outer" ng-app="myApp" ng-controller="myController">
+    <div class="innerbox firstScreen">
+    <div class="flipcard">
+        <div class="header">
+        <div class="heading">NYC Taxi data visualization</div>
+        <div class="content">As we know public transportation is one of the most important part of New York City, through
+    this data visualization project we aim at analysing the yellow cabs data provided by NYC Open
+    Data source and generate visualizations that would help a New York cab rider to make a
+    decision of whether to take a cab or prefer using the subway.
+    </div>
+    <div class="stats"> Some of our stats</div>
+    <ul>
+        <li>Total Number of features <span id="features"></span></li>
+        <li>Total Number of examples <span id="examples"></span></li>
+    </ul>
+    </div>
+        <div class="face front">Lets Start the ride <img src="http://www.animatedimages.org/data/media/111/animated-arrow-image-0039.gif" border="0" alt="animated-arrow-image-0039" /></div>
+        <div class="face back">
+    <div class="container">
+        <p>Please select the pick-up location</p>
+    <ul class="list">
+    <li class="list__item">
+    <input type="radio" class="radio-btn" name="question1" id="a-question1" ng-model = "pickup" value="Brooklyn" />
+    <label for="a-question1" class="label">Brooklyn</label>
+    </li>
+    <li class="list__item">
+    <input type="radio" class="radio-btn" name="question1" id="b-question1" ng-model = "pickup" value="Manhattan" />
+    <label for="b-question1" class="label">Manhattan</label>
+    </li>
+    <li class="list__item">
+    <input type="radio" class="radio-btn" name="question1" id="c-question1" ng-model = "pickup" value="Bronx" />
+    <label for="c-question1" class="label">Bronx</label>
+    </li>
+    <li class="list__item">
+    <input type="radio" class="radio-btn" name="question1" id="d-question1" ng-model = "pickup" value="Staten Island" />
+    <label for="d-question1" class="label">Staten Island</label>
+    </li>
+    <li class="list__item">
+    <input type="radio" class="radio-btn" name="question1" id="e-question1" ng-model = "pickup" value="Queens" />
+    <label for="e-question1" class="label">Queens</label>
+    </li>
+    </ul>
+    </div>
+    <div class="container">
+        <p>Please select the drop-off location</p>
+    <ul class="list">
+    <li class="list__item">
+    <input type="radio" class="radio-btn" name="question2" id="a-question2" ng-model = "dropOff" value="Brooklyn" />
+    <label for="a-question2" class="label">Brooklyn</label>
+    </li>
+    <li class="list__item">
+    <input type="radio" class="radio-btn" name="question2" id="b-question2" ng-model = "dropOff" value="Manhattan" />
+    <label for="b-question2" class="label">Manhattan</label>
+    </li>
+    <li class="list__item">
+    <input type="radio" class="radio-btn" name="question2" id="c-question2" ng-model = "dropOff" value="Bronx" />
+    <label for="c-question2" class="label">Bronx</label>
+    </li>
+    <li class="list__item">
+    <input type="radio" class="radio-btn" name="question2" id="d-question2" ng-model = "dropOff" value="Staten Island" />
+    <label for="d-question2" class="label">Staten Island</label>
+    </li>
+    <li class="list__item">
+    <input type="radio" class="radio-btn" name="question2" id="e-question2" ng-model = "dropOff" value="Queens" />
+    <label for="e-question2" class="label">Queens</label>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="innerbox">
+        <h2>Will there be a cab easily available at this hour?</h2>
+        <div id="chart" class="graph"></div>
+    </div>
+    <div class="innerbox">
+        <h2>I wonder if I'll reach before the movie starts?</h2>
+        <svg id="graph4" class="graph">
+        </svg>
+    </div>
+    <div class="innerbox" id="div_graph6">
+        <h2>Cab Pick-up frequency against hours</h2>           
+        <svg id="graph6" class="graph">
+            <foriegnobject>
+                <div></div>            
+                <select id="graph6_borough">
                     <option value="Brooklyn">Brooklyn</option>
                     <option value="Manhattan">Manhattan</option>
                     <option value="Bronx">Bronx</option>
                     <option value="Staten Island">Staten Island</option>
                     <option value="Queens">Queens</option>
-                    <option value="ALL">ALL</option>
+                    <option value="ALL" selected>ALL</option>
                 </select>
-                 -->
-	<svg id="graph6" class="graph">
-        <foriegnobject>
-                        <div></div>    
-                    
-            <select id="graph6_borough">
-                <option value="Brooklyn">Brooklyn</option>
-                <option value="Manhattan">Manhattan</option>
-                <option value="Bronx">Bronx</option>
-                <option value="Staten Island">Staten Island</option>
-                <option value="Queens">Queens</option>
-                <option value="ALL" selected>ALL</option>
-            </select>
-        
-        </foriegnobject>
-	</svg>
-</div>
-
-<div class="taxi"></div>
-<div class="slide"></div>
-</div>
-
-</body>
-</html>
+            </foriegnobject>
+        </svg>
+    </div>
+    <div class="taxi"></div>
+    <div class="slide"></div>
+    </div>
+    </body>
+    </html>

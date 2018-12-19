@@ -3,7 +3,7 @@ $(document).ready(function(){
 	width = $('#graph3').width();
 	height = $('#graph3').height();
   data = readData();
-  drawMap(width, height);
+  //drawMap(width, height);
 	// drawGraph2(width, height);
   // addColorsToBoroughs()
 });

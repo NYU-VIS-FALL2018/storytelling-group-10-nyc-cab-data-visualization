@@ -11,9 +11,8 @@ heatmap = function(){
     gridSize = Math.floor(width / 24),
     legendElementWidth = gridSize*2,
     buckets = 9,
-    colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
+    colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"],
     days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-    // days = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"]
     times = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"];
     datasets = ["dataset/final_project_data.csv"];
 
@@ -49,7 +48,7 @@ var heatmapChart = function() {
 d3.csv("dataset/final_project_data.csv",
 function(error, csv_data) {
     if (error) throw error;
-    var pickup_location = angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup;
+        var pickup_location = angular.element(document.querySelector('[ng-controller="myController"]')).scope().pickup;
     var drop_location = angular.element(document.querySelector('[ng-controller="myController"]')).scope().dropOff;    
 
     if( pickup_location != "ALL" && drop_location != "ALL")
@@ -79,17 +78,12 @@ function(error, csv_data) {
     for (var dayelement in dataGroupedByDay)
     {
         for (var hourelement in dataGroupedByDay[dayelement].values)
-        // console.log(hourelement)
         data.push({
             day: dataGroupedByDay[dayelement].key,
             hour: dataGroupedByDay[dayelement].values[hourelement].key,
             value: dataGroupedByDay[dayelement].values[hourelement].value
         })
     }
-    console.log(data)
-    // var colorScale = d3.scaleQuantile()
-    //     .domain([0, buckets - 1, d3.max(data, function (d) { return Math.log2(d.value); })])
-    //     .range(colors);
     var max = d3.max(data, function (d) { return d.value; });
     var min = d3.min(data, function(d){return d.value})
     var colorScale = d3.scaleLinear().domain([max, min])
