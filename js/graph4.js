@@ -53,10 +53,22 @@ d3.csv("dataset/final_project_data.csv", function(error, csv_data) {
                   return d3.mean(d, function(g) {return g.Duration;});
                 }).entries(csv_data);
 
+  var count = 0;
   unsorted_data.forEach(function(d) {
       d.key = +d.key;
       d.value = +d.value;
+      count += 1;
   });
+
+  if (count < 23){
+
+    svg.append("text")
+    .attr("y", height / 2)
+    .attr("x",(width/3))
+    .text("Sorry data is not available for the selected locations.")
+    return
+  }
+
 //   var data = {};
 //   Object.keys(unsorted_data).sort().forEach(function(key) {
 //   data[key] = unsorted_data[key];

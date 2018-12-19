@@ -90,8 +90,9 @@ function(error, csv_data) {
     // var colorScale = d3.scaleQuantile()
     //     .domain([0, buckets - 1, d3.max(data, function (d) { return Math.log2(d.value); })])
     //     .range(colors);
-    var max = d3.max(data, function (d) { return Math.log2(d.value); });
-    var colorScale = d3.scaleLinear().domain([max/2, max/32])
+    var max = d3.max(data, function (d) { return d.value; });
+    var min = d3.min(data, function(d){return d.value})
+    var colorScale = d3.scaleLinear().domain([max, min])
     .range([d3.rgb("#0f3443"), d3.rgb("#34e89e")]);
 
     var cards = svg.selectAll(".hour")
