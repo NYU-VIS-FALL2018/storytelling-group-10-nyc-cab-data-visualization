@@ -1,7 +1,8 @@
 html, 
 body {
     height: 100%;
-    background: linear-gradient(to right, rgb(55, 59, 68), rgb(66, 134, 244))
+    background: linear-gradient(to right, rgb(55, 59, 68), rgb(66, 134, 244));
+    overflow-y:hidden;
 }
 #boroughs {
   stroke: grey;
@@ -48,9 +49,10 @@ p{
 .outerbox {
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
+	/* overflow: hidden; */
 	white-space: nowrap;
     background-repeat: repeat-x;
+    overflow-y:hidden;
 }
 .innerbox {
 	overflow: hidden;
